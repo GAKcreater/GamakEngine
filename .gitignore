@@ -1,3 +1,28 @@
-/build
-/cmake_scripts
+# Build directories
+/build/
+/bin/
+/out/
 
+# IDE settings
+/.vscode/
+/.idea/
+/*.user
+/*.suo
+/*.sln
+/*.vcxproj
+/*.filters
+
+# System / Cache
+/cmake_scripts/
+/CMakeCache.txt
+/CMakeFiles/
+/CMakeSettings.json
+/cmake_install.cmake
+/vcpkg_installed/
+
+# Dependency folders (if local)
+/libraries/
+
+# OS specific
+.DS_Store
+Thumbs.db

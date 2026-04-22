@@ -1,25 +1,23 @@
 #include "gui/gui.hpp"
 
-Gui Gui::global;
-
 Gui::Gui()
     : mWindow(sf::VideoMode(500, 500), "TheBestGame"),
       mainPage(TEXTURES_PATH + "mainPage.png", 0, 0)
 {
     interfacePageVector.push_back(&mainPage);
-    mainPage.setButton(TEXTURES_PATH + "firstButton_1.png", TEXTURES_PATH + "firstButton_2.png", 82,
+    mainPage.setButton(TEXTURES_PATH + "firstButton2.png", TEXTURES_PATH + "firstButton1.png", 82,
                        118, 340, 150);
     mWindow.setFramerateLimit(60);
 }
 
 void
-Gui::vectorInput(sf::Sprite& a)
+Gui::addSprite(sf::Sprite& a)
 {
     SpriteVector.push_back(&a);
 }
 
 void
-Gui::drawAnything()
+Gui::renderElements()
 {
     for (int i = 0; i < SpriteVector.size(); i++)
     {
@@ -36,20 +34,45 @@ Gui::drawAnything()
 }
 
 std::vector<sf::Event>&
-Gui::eventTrnasmitterToCore()
+Gui::fetchEvents()
 {
     return evObject.eventVec;
 }
 
 void
-Gui::bebraMustDie()
+Gui::handleMouseClick(sf::Vector2i mousePos)
 {
-    mWindow.close();
-    exit(0);
+    sf::Vector2f floatMousePos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+    for (auto* page : interfacePageVector)
+    {
+        page->handleMouseClick(floatMousePos);
+    }
 }
 
 void
-Gui::visualStarted()
+Gui::handleMouseRelease(sf::Vector2i mousePos)
+{
+    sf::Vector2f floatMousePos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+    for (auto* page : interfacePageVector)
+    {
+        page->handleMouseRelease(floatMousePos);
+    }
+}
+
+void
+Gui::closeWindow()
+{
+    mWindow.close();
+}
+
+bool
+Gui::isOpen() const
+{
+    return mWindow.isOpen();
+}
+
+void
+Gui::pollEventsAndRender()
 {
     sf::Event event;
     while (mWindow.pollEvent(event))
@@ -57,6 +80,6 @@ Gui::visualStarted()
         evObject.pushEvent(event);
     }
     mWindow.clear();
-    drawAnything();
+    renderElements();
     mWindow.display();
 }

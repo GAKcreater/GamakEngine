@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "domain/definiki.hpp"
+#include "domain/definitions.hpp"
 #include "domain/time.hpp"
 
 #include "game/gameplay.hpp"
@@ -14,15 +14,13 @@
 class Core
 {
 public:
-    std::vector<sf::Event> eventVecTransmitterForGame();
-    std::vector<sf::Event> eventVecTransmitterForMenu();
-    void run();
     Core() = default;
-    std::vector<sf::Event> eventTrnasmitterToGame();
+    void run();
 
 private:
     Time time;
-    void eventSorter(std::vector<sf::Event>& a);
+    Gui gui;
+    void routeEvents(std::vector<sf::Event>& events);
     std::vector<sf::Event> eventVecForGame;
     std::vector<sf::Event> eventVecForMenu;
 };

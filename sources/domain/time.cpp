@@ -1,14 +1,13 @@
 #include "time.hpp"
-Time Time::me;
 
 void
-Time::reTime()
+Time::update()
 {
-   mainTime.restart();
+    deltaTime = mainTime.restart().asSeconds();
 }
 
-double
-Time::getTime()
+float
+Time::getDeltaTime() const
 {
-    return mainTime.getElapsedTime().asMilliseconds();
+    return deltaTime;
 }

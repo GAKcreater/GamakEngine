@@ -13,6 +13,7 @@ public:
     void doSomething();
     std::vector<sf::Vector2f> getButtonPosition();
     void clicked(sf::Vector2f clickCoordinates);
+    void released(sf::Vector2f clickCoordinates);
     enum class type
     {
         zero = 0

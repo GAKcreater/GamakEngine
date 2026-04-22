@@ -12,6 +12,8 @@ public:
     Interface(std::string path, float x, float y);
     void setButton(std::string onClickTexturePath, std::string defaultTexturePath, float x, float y,
                    float xSize, float ySize);
+    void handleMouseClick(sf::Vector2f mousePos);
+    void handleMouseRelease(sf::Vector2f mousePos);
     std::vector<sf::Sprite> draw();
 
 private:

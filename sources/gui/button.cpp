@@ -25,3 +25,9 @@ Button::clicked(sf::Vector2f clickCoordinates)
         buttonSprite.setTexture(onClickTexture);
     }
 }
+
+void
+Button::released(sf::Vector2f clickCoordinates)
+{
+    buttonSprite.setTexture(defaultTexture);
+}

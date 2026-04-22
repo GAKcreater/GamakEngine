@@ -16,6 +16,24 @@ Interface::setButton(std::string onClickTexturePath, std::string defaultTextureP
     buttons.emplace_back(onClickTexturePath, defaultTexturePath, x, y, xSize, ySize);
 }
 
+void
+Interface::handleMouseClick(sf::Vector2f mousePos)
+{
+    for (auto& button : buttons)
+    {
+        button.clicked(mousePos);
+    }
+}
+
+void
+Interface::handleMouseRelease(sf::Vector2f mousePos)
+{
+    for (auto& button : buttons)
+    {
+        button.released(mousePos);
+    }
+}
+
 std::vector<sf::Sprite>
 Interface::draw()
 {

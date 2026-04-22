@@ -10,12 +10,12 @@ class Gameplay
 {
 public:
     Gameplay();
-    void doGame(std::vector<sf::Event>& a);
+    void update(std::vector<sf::Event>& events);
 
 private:
-    void eventScan(std::vector<sf::Event>& b);
+    void processInputEvents(std::vector<sf::Event>& events);
     void doEvent();
-    std::set<sf::Keyboard::Key> a;
+    std::set<sf::Keyboard::Key> pressedKeys;
 };
 
 #endif // !GAME_HPP

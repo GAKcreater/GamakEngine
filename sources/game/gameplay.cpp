@@ -5,22 +5,26 @@ Gameplay::Gameplay()
 }
 
 void
-Gameplay::eventScan(std::vector<sf::Event>& b)
+Gameplay::processInputEvents(std::vector<sf::Event>& events)
 {
-    for (int i = 0; i < b.size(); i++)
+    // Using a set to keep track of currently pressed keys.
+    // This allows for smooth movement and handling multiple keys at once.
+    for (int i = 0; i < events.size(); i++)
     {
-        if (b[i].type == sf::Event::KeyPressed)
+        if (events[i].type == sf::Event::KeyPressed)
         {
-            a.insert(b[i].key.code);
+            pressedKeys.insert(events[i].key.code);
         }
-        else if (b[i].type == sf::Event::KeyReleased)
+        else if (events[i].type == sf::Event::KeyReleased)
         {
-            a.erase(b[i].key.code);
+            pressedKeys.erase(events[i].key.code);
         }
     }
 }
 
 void
-Gameplay::doGame(std::vector<sf::Event>& a)
+Gameplay::update(std::vector<sf::Event>& events)
 {
+    processInputEvents(events);
+    // TODO: Implement actual game logic/physics update here
 }

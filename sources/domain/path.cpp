@@ -1,15 +1,25 @@
 #include "path.hpp"
 
-#include <windows.h>
+#include <filesystem>
 
 std::string
 Path::path() noexcept
 {
-    CHAR buffer[MAX_PATH] = {0};
-    uint8_t size = GetModuleFileNameA(NULL, buffer, MAX_PATH);
-    for (int i = 0; i < 2; ++i)
-        while (buffer[--size] != L'\\')
-            ;
-    buffer[size + 1] = 0;
-    return std::string(buffer);
+    // Getting the current working directory
+    std::filesystem::path current = std::filesystem::current_path();
+    
+    // Search upwards until we find the "resources" directory
+    while (!std::filesystem::exists(current / "resources") && current.has_parent_path())
+    {
+        current = current.parent_path();
+    }
+    
+    try
+    {
+        return current.string() + "/";
+    }
+    catch (...)
+    {
+        return "./";
+    }
 }

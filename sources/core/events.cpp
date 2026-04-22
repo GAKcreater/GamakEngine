@@ -3,5 +3,5 @@
 void
 Events::pushEvent(sf::Event& ev)
 {
-    eventVector.push_back(ev);
+    eventVec.push_back(ev);
 }

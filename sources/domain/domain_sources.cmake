@@ -7,5 +7,5 @@ set(
     time.hpp
     time.cpp
 
-    definiki.hpp
+    definitions.hpp
 )

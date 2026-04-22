@@ -6,9 +6,11 @@
 class Time
 {
 public:
-    static Time me;
+    void update();
+    float getDeltaTime() const;
+
+private:
     sf::Clock mainTime;
-    void reTime();
-    double getTime();
+    float deltaTime = 0.0f;
 };
 #endif // !TIME_HPP

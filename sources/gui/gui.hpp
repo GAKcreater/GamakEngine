@@ -7,7 +7,7 @@
 #include <set>
 #include <vector>
 
-#include "domain/definiki.hpp"
+#include "domain/definitions.hpp"
 
 #include "core/events.hpp"
 
@@ -16,18 +16,20 @@
 class Gui
 {
 public:
-    static Gui global;
-    void visualStarted();
-    void vectorInput(sf::Sprite& a);
+    Gui();
+    void pollEventsAndRender();
+    void addSprite(sf::Sprite& a);
     Events evObject;
-    std::vector<sf::Event>& eventTrnasmitterToCore();
-    void bebraMustDie();
+    std::vector<sf::Event>& fetchEvents();
+    void handleMouseClick(sf::Vector2i mousePos);
+    void handleMouseRelease(sf::Vector2i mousePos);
+    void closeWindow();
+    bool isOpen() const;
     std::vector<sf::Sprite*> SpriteVector;
     std::vector<Interface*> interfacePageVector;
 
 private:
-    Gui();
-    void drawAnything();
+    void renderElements();
     sf::RenderWindow mWindow;
     // Pages//
     Interface mainPage;
